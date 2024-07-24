@@ -13,6 +13,7 @@ use Neos\Flow\Mvc\ActionRequest;
 use Neos\Flow\Security\Authentication\Controller\AbstractAuthenticationController;
 use Neos\Flow\Core\Bootstrap;
 use Psr\Http\Message\UriFactoryInterface;
+use Neos\Fusion\View\FusionView;
 
 
 class LoginController extends AbstractAuthenticationController
@@ -94,13 +95,29 @@ class LoginController extends AbstractAuthenticationController
      * SkipCsrfProtection is needed here because we will have errors otherwise if we render multiple
      * plugins on the same page
      *
+     * https://discuss.neos.io/t/render-single-fusion-object/6584/4
      * @return void
      * @Flow\SkipCsrfProtection
      */
     public function loginAction()
     {
+
+        // https://discuss.neos.io/t/render-single-fusion-object/6584/4
+
+        $this->view = new FusionView();
+        $this->view->setControllerContext($this->controllerContext);
+        $this->view->setFusionPathPatterns([
+            'resource://Neos.Fusion/Private/Fusion/Root.fusion',
+            'resource://Sandstorm.UserManagement/Private/Fusion/Root.fusion',
+        ]);
+        $this->view->setFusionPath('<Sandstorm.UserManagement:SomeDocument>');
+
         $this->view->assign('account', $this->securityContext->getAccount());
         $this->view->assign('node', $this->request->getInternalArgument('__node'));
+        $this->view->assign('test', 'hello wordl');
+
+         $this->view->render();
+
     }
 
     /**

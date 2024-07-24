@@ -1,0 +1,19 @@
+prototype(Sandstorm.UserManagement:SomeDocument) < prototype(Neos.Fusion:Component) {
+#      @context.node = ${q(node)}
+#      @context.site = ${q(site)}
+#      @context.documentNode = ${q(documentNode)}
+#     renderer = Neos.Fusion:Renderer {
+#         @context {
+#             site = ${q(site)}
+#             documentNode = ${q(node)}
+#             node = ${q(node)}
+#         }
+#         renderer = "hello"
+#         renderPath = "/root"
+#     }
+    renderer = afx`
+        <Neos.Fusion:Debug>{props.test}</Neos.Fusion:Debug>
+        <p>{account.accountIdentifier}</p>
+    `
+}
+

@@ -1,0 +1,3 @@
+prototype(Sandstorm.UserManagement:Login) < prototype(Neos.Fusion:Component) {
+    renderer = "hello"
+}

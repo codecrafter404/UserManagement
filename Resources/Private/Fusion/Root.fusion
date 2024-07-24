@@ -1,1 +1,4 @@
-include: NodeTypes/*
+include: **/*.fusion
+# root {
+#     test = Sandstorm.UserManagement:SomeDocument
+# }

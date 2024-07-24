@@ -4,6 +4,7 @@
     "type": "neos-package",
     "keywords": ["user", "login", "logout", "registration", "frontend login", "forgot password", "account", "Neos", "Flow"],
     "homepage": "https://github.com/sandstorm/UserManagement",
+    "version": "7.1.4",
     "license": "MIT",
     "authors": [
         {

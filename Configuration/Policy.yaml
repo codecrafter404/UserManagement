@@ -12,6 +12,8 @@ privilegeTargets:
       matcher: 'method(Sandstorm\UserManagement\Controller\RegistrationController->(?!initialize).*Action())'
     'Sandstorm.UserManagement:Profile':
       matcher: 'method(Sandstorm\UserManagement\Controller\ProfileController->(?!initialize).*Action())'
+    'Sandstorm.UserManagement:Test':
+      matcher: 'method(Sandstorm\UserManagement\Controller\TestController->(?!initialize).*Action())'
 
 roles:
   'Neos.Flow:Everybody':

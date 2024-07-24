@@ -65,7 +65,8 @@ Neos:
   Flow:
     mvc:
       routes:
-        'Sandstorm.UserManagement': TRUE
+        'Sandstorm.UserManagement':
+          position: 'before Neos.Neos'
 
 
 #   The auth provider settings below are needed for the standalone case only.

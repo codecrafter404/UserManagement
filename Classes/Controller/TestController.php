@@ -1,7 +1,7 @@
 <?php
 namespace Sandstorm\UserManagement\Controller;
 use Neos\Flow\Mvc\Controller\ActionController;
-use Neos\Neos\View\FusionView;
+use Neos\Fusion\View\FusionView;
 
 class TestController extends ActionController
 {

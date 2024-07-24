@@ -84,7 +84,8 @@ Neos:
   Neos:
     fusion:
       autoInclude:
-        'Sandstorm.UserManagement': TRUE
+        'Sandstorm.UserManagement':
+          position: 'before Neos.Neos'
 
     userInterface:
       translation:

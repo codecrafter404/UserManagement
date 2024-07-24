@@ -1,0 +1,3 @@
+prototype(Sandstorm.UserManagment:Test) < prototype(Fusion.Fusion:Component) {
+    renderer = afx`<p>Hello World</p>`
+}

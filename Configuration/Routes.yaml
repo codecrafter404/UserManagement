@@ -5,6 +5,14 @@
 ## Login/Logout ----------------------------------------------------------
 
 -
+  name: 'Test Route'
+  uriPattern: 'test'
+  defaults:
+    '@package':    'Sandstorm.UserManagement'
+    '@controller': 'Test'
+    '@action':     'test'
+    '@format':     'html'
+-
   name: 'Login Screen'
   uriPattern: 'login'
   defaults:

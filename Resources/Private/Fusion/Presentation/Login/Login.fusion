@@ -1,7 +1,7 @@
 prototype(Sandstorm.UserManagement:LoginSite) < prototype(Neos.Fusion:Component) {
 
     isAuthenticated = false
-    passwordReset = Neos.Fusion:UriBuilder {
+    passwordResetUri = Neos.Fusion:UriBuilder {
         package = "Sandstorm.UserManagement"
         controller = "ResetPassword"
         action = "index"
@@ -21,6 +21,6 @@ prototype(Sandstorm.UserManagement:LoginSite) < prototype(Neos.Fusion:Component)
             </fieldset>
 
         </Neos.Fusion.Form:Form>
-        <a href={passwordReset}>{I18n.translate('Sandstorm.UserManagement:Main:passwordForgotten')}</a>
+        <a href={props.passwordResetUri}>{I18n.translate('Sandstorm.UserManagement:Main:passwordForgotten')}</a>
     `
 }

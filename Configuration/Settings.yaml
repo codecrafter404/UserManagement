@@ -62,6 +62,9 @@ Sandstorm:
         address: 'test@example.com'
 
 Neos:
+  Fusion:
+    defaultContext:
+      'Sandstorm.UserManagement': 'Sandstorm\UserManagement\EelHelper\AuthenticationHelper'
   Flow:
     mvc:
       routes:

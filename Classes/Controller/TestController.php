@@ -18,8 +18,9 @@ class TestController extends ActionController
             'resource://Sandstorm.UserManagement/Private/Fusion/Root.fusion'
         ]);
         $this->view->setFusionPath('sandstormUserManagement');
-        $this->view->assign('test', 'hello world!');
 
+        $this->view->assign('route', 'test');
+        $this->view->assign('title', 'Test');
         $out = $this->view->render();
         return $out;
     }

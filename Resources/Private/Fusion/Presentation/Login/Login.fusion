@@ -1,0 +1,26 @@
+prototype(Sandstorm.UserManagement:LoginSite) < prototype(Neos.Fusion:Component) {
+
+    isAuthenticated = false;
+    path = ''
+
+    renderer = afx`
+        <Sandstorm.UserManagement:LoginForm @if.showLoginForm={isAuthenticated} />
+        <Neos.Fusion.Form:Form
+            form.target.package = "Sandstorm.UserManagement"
+            form.target.controller = "Login"
+            form.target.action = "authenticate"
+        >
+
+        </Neos.Fusion.Form:Form>
+
+
+          <f:form action="authenticate" method="post">
+            <fieldset>
+              <input placeholder="{f:translate(id: 'emailAddress')}" name="__authentication[Neos][Flow][Security][Authentication][Token][UsernamePassword][username]" type="email" autofocus>
+              <input placeholder="{f:translate(id: 'password')}" name="__authentication[Neos][Flow][Security][Authentication][Token][UsernamePassword][password]" type="password" value="">
+              <input type="submit" value="{f:translate(id: 'login')}" class="button large primary" />
+            </fieldset>
+          </f:form>
+          <f:link.action action="index" controller="ResetPassword"><f:translate id="passwordForgotten"></f:translate></f:link.action>
+    `
+}

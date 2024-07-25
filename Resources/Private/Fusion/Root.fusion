@@ -1,7 +1,22 @@
 include: **/*.fusion
 
 sandstormUserManagement = Sandstorm.UserManagement:SiteLayout {
-    content = afx`
-        <h1>Hello World: {test}</h1>
-    `
+    title = ${title}
+
+    content = Neos.Fusion:Case {
+        test {
+            condition = ${route == "test"}
+            renderer = Sandstorm.UserManagement:Test {
+                message = 'hello world'
+            }
+        }
+        test {
+            condition = ${route == "login"}
+            renderer = Sandstorm.UserManagement:LoginSite
+        }
+        default {
+            condition = true
+            renderer = "internal error: route not found"
+        }
+    }
 }

@@ -9,6 +9,7 @@ use Neos\Flow\Security\Exception\AuthenticationRequiredException;
 use Sandstorm\UserManagement\Domain\Service\RedirectTargetServiceInterface;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Exception;
+use Neos\Fusion\View\FusionView;
 use Neos\Flow\Mvc\ActionRequest;
 use Neos\Flow\Security\Authentication\Controller\AbstractAuthenticationController;
 use Neos\Flow\Core\Bootstrap;
@@ -94,13 +95,27 @@ class LoginController extends AbstractAuthenticationController
      * SkipCsrfProtection is needed here because we will have errors otherwise if we render multiple
      * plugins on the same page
      *
-     * @return void
+     * @return string
      * @Flow\SkipCsrfProtection
      */
     public function loginAction()
     {
+        // $this->view = new FusionView();
+        // $this->view->setControllerContext($this->controllerContext);
+        // $this->view->setFusionPathPatterns([
+        //     'resource://Neos.Fusion/Private/Fusion/Root.fusion',
+        //     'resource://Sandstorm.UserManagement/Private/Fusion/Root.fusion'
+        // ]);
+        // $this->view->setFusionPath('sandstormUserManagement');
+        //
+        // $this->view->assign('route', 'login');
+        // $this->view->assign('title', 'Login');
+
         $this->view->assign('account', $this->securityContext->getAccount());
         $this->view->assign('node', $this->request->getInternalArgument('__node'));
+
+        // $out = $this->view->render();
+        // return $out;
     }
 
     /**

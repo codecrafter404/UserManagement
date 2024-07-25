@@ -1,5 +1,10 @@
 prototype(Sandstorm.UserManagement:Test) < prototype(Neos.Fusion:Component) {
+
+    // public api
+    message = ''
+
+
     renderer = afx`
-        <h1>Hello World</h1>
+        <h1>Test Message: {props.message}</h1>
     `
 }

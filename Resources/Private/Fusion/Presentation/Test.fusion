@@ -1,3 +1,5 @@
 prototype(Sandstorm.UserManagement:Test) < prototype(Neos.Fusion:Component) {
-    renderer = afx`<p>Hello World</p>`
+    renderer = afx`
+        <h1>Hello World</h1>
+    `
 }

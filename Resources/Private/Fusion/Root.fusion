@@ -1,1 +1,7 @@
 include: **/*.fusion
+
+sandstormUserManagement = Sandstorm.UserManagement:SiteLayout {
+    content = afx`
+        <h1>Hello World: {test}</h1>
+    `
+}

@@ -98,18 +98,19 @@ class LoginController extends AbstractAuthenticationController
      * @return string
      * @Flow\SkipCsrfProtection
      */
-    public function loginAction()
+    public function loginAction(): void
     {
-        // $this->view = new FusionView();
-        // $this->view->setControllerContext($this->controllerContext);
-        // $this->view->setFusionPathPatterns([
-        //     'resource://Neos.Fusion/Private/Fusion/Root.fusion',
-        //     'resource://Sandstorm.UserManagement/Private/Fusion/Root.fusion'
-        // ]);
-        // $this->view->setFusionPath('sandstormUserManagement');
-        //
-        // $this->view->assign('route', 'login');
-        // $this->view->assign('title', 'Login');
+        $this->view = new FusionView();
+        $this->view->setControllerContext($this->controllerContext);
+        $this->view->setFusionPathPatterns([
+            'resource://Neos.Fusion/Private/Fusion/Root.fusion',
+            'resource://Neos.Fusion.Form/Private/Fusion/Root.fusion',
+            'resource://Sandstorm.UserManagement/Private/Fusion/Root.fusion'
+        ]);
+        $this->view->setFusionPath('sandstormUserManagement');
+
+        $this->view->assign('route', 'login');
+        $this->view->assign('title', 'Login');
 
         $this->view->assign('account', $this->securityContext->getAccount());
         $this->view->assign('node', $this->request->getInternalArgument('__node'));

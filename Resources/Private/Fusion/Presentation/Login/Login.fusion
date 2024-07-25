@@ -1,26 +1,26 @@
 prototype(Sandstorm.UserManagement:LoginSite) < prototype(Neos.Fusion:Component) {
 
-    isAuthenticated = false;
-    path = ''
+    isAuthenticated = false
+    passwordReset = Neos.Fusion:UriBuilder {
+        package = "Sandstorm.UserManagement"
+        controller = "ResetPassword"
+        action = "index"
+    }
 
     renderer = afx`
         <Sandstorm.UserManagement:LoginForm @if.showLoginForm={isAuthenticated} />
         <Neos.Fusion.Form:Form
-            form.target.package = "Sandstorm.UserManagement"
-            form.target.controller = "Login"
-            form.target.action = "authenticate"
+            form.target.package="Sandstorm.UserManagement"
+            form.target.controller="Login"
+            form.target.action="authenticate"
         >
+            <fieldset>
+                  <Neos.Fusion.Form:Input attributes.placeholder={I18n.translate('Sandstorm.UserManagement:Main:emailAddress')} field.name="__authentication[Neos][Flow][Security][Authentication][Token][UsernamePassword][username]" attributes.type="email" attributes.autofocus/>
+                  <Neos.Fusion.Form:Input attributes.placeholder={I18n.translate('Sandstorm.UserManagement:Main:password')} field.name="__authentication[Neos][Flow][Security][Authentication][Token][UsernamePassword][password]" attributes.type="password" attributes.value=""/>
+                  <Neos.Fusion.Form:Button class="button large primary">{I18n.translate('Sandstorm.UserManagement:Main:login')}</Neos.Fusion.Form:Button>
+            </fieldset>
 
         </Neos.Fusion.Form:Form>
-
-
-          <f:form action="authenticate" method="post">
-            <fieldset>
-              <input placeholder="{f:translate(id: 'emailAddress')}" name="__authentication[Neos][Flow][Security][Authentication][Token][UsernamePassword][username]" type="email" autofocus>
-              <input placeholder="{f:translate(id: 'password')}" name="__authentication[Neos][Flow][Security][Authentication][Token][UsernamePassword][password]" type="password" value="">
-              <input type="submit" value="{f:translate(id: 'login')}" class="button large primary" />
-            </fieldset>
-          </f:form>
-          <f:link.action action="index" controller="ResetPassword"><f:translate id="passwordForgotten"></f:translate></f:link.action>
+        <a href={passwordReset}>{I18n.translate('Sandstorm.UserManagement:Main:passwordForgotten')}</a>
     `
 }

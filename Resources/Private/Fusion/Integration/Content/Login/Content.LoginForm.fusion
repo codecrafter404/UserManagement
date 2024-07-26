@@ -1,0 +1,10 @@
+prototype(Sandstorm.UserManagement:Content.LoginForm) < prototype(Neos.Fusion:Component) {
+    passwordResetUri = Neos.Fusion:UriBuilder {
+        package = "Sandstorm.UserManagement"
+        controller = "ResetPassword"
+        action = "index"
+    }
+    renderer = Sandstorm.UserManagement:Component.LoginForm {
+        passwordResetUri = ${props.passwordResetUri}
+    }
+}

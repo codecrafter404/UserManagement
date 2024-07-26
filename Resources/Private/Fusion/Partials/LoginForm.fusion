@@ -1,3 +1,0 @@
-prototype(Sandstorm.UserManagement:LoginForm) < prototype(Neos.Fusion:Component) {
-    renderer = "Loginform"
-}

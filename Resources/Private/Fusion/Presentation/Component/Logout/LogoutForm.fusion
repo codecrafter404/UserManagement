@@ -1,0 +1,10 @@
+prototype(Sandstorm.UserManagement:Component.LogoutForm) < prototype(Neos.Fusion:Component) {
+    account = ''
+    @private {
+        translation = ${I18n.translate('logout.loggedAs', null, {'0': props.account.accountIdentifier}, 'Main', 'Sandstorm.UserManagement', props.account.accountIdentifier)}
+        //translation = ${I18n.translate(id: 'Sandstorm.UserManagement:Main:logout.loggedAs', arguments: [{'0': props.account.accountIdentifier}])}
+    }
+    renderer = afx`
+        <p>{private.translation}</p>
+    `
+}

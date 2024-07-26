@@ -1,14 +1,6 @@
-prototype(Sandstorm.UserManagement:LoginSite) < prototype(Neos.Fusion:Component) {
-
-    isAuthenticated = false
-    passwordResetUri = Neos.Fusion:UriBuilder {
-        package = "Sandstorm.UserManagement"
-        controller = "ResetPassword"
-        action = "index"
-    }
-
-    renderer = afx`
-        <Sandstorm.UserManagement:LoginForm @if.showLoginForm={isAuthenticated} />
+prototype(Sandstorm.UserManagement:Component.LoginForm) < prototype(Neos.Fusion:Component) {
+    passwordResetUri = ''
+    renderer =  afx`
         <Neos.Fusion.Form:Form
             form.target.package="Sandstorm.UserManagement"
             form.target.controller="Login"

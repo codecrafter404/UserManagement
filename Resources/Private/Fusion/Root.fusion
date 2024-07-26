@@ -12,7 +12,9 @@ sandstormUserManagement = Sandstorm.UserManagement:SiteLayout {
         }
         test {
             condition = ${route == "login"}
-            renderer = Sandstorm.UserManagement:LoginSite
+            renderer = Sandstorm.UserManagement:Content.Login {
+                account = ${account}
+            }
         }
         default {
             condition = true

@@ -98,7 +98,7 @@ class LoginController extends AbstractAuthenticationController
      * @return string
      * @Flow\SkipCsrfProtection
      */
-    public function loginAction(): string
+    public function loginAction()
     {
         $this->view = new FusionView();
         $this->view->setControllerContext($this->controllerContext);

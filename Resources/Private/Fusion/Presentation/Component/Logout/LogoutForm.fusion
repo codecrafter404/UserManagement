@@ -1,10 +1,19 @@
 prototype(Sandstorm.UserManagement:Component.LogoutForm) < prototype(Neos.Fusion:Component) {
+
     account = ''
+
     @private {
         translation = ${I18n.translate('logout.loggedAs', null, {'0': props.account.accountIdentifier}, 'Main', 'Sandstorm.UserManagement', props.account.accountIdentifier)}
         //translation = ${I18n.translate(id: 'Sandstorm.UserManagement:Main:logout.loggedAs', arguments: [{'0': props.account.accountIdentifier}])}
     }
     renderer = afx`
         <p>{private.translation}</p>
+        <Neos.Fusion.Form:Form
+            form.target.package="Sandstorm.UserManagement"
+            form.target.controller="Login"
+            form.target.action="logout"
+        >
+            <Neos.Fusion.Form:Button class="button primary">{I18n.translate('Sandstorm.UserManagement:Main:logout')}</Neos.Fusion.Form:Button>
+        </Neos.Fusion.Form:Form>
     `
 }

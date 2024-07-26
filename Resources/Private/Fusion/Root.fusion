@@ -10,9 +10,15 @@ sandstormUserManagement = Sandstorm.UserManagement:SiteLayout {
                 message = 'hello world'
             }
         }
-        test {
+        login {
             condition = ${route == "login"}
             renderer = Sandstorm.UserManagement:Content.Login {
+                account = ${account}
+            }
+        }
+        loginAuthenticate {
+            condition = ${route == "login/authenticate"}
+            renderer = Sandstorm.UserManagement:Authentication {
                 account = ${account}
             }
         }

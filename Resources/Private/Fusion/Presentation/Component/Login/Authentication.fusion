@@ -1,0 +1,8 @@
+prototype(Sandstorm.UserManagement:Authentication) < prototype(Neos.Fusion:Component) {
+
+    account = ''
+
+    renderer = Sandstorm.UserManagement:Content.Login {
+        account = ${props.account}
+    }
+}

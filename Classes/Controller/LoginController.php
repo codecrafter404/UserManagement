@@ -138,7 +138,22 @@ class LoginController extends AbstractAuthenticationController
         }
 
         if ($result === null) {
+            $this->view = new FusionView();
+            $this->view->setControllerContext($this->controllerContext);
+            $this->view->setFusionPathPatterns([
+                'resource://Neos.Fusion/Private/Fusion/Root.fusion',
+                'resource://Neos.Fusion.Form/Private/Fusion/Root.fusion',
+                'resource://Sandstorm.UserManagement/Private/Fusion/Root.fusion'
+            ]);
+            $this->view->setFusionPath('sandstormUserManagement');
+
+            $this->view->assign('route', 'login/authenticate');
+            $this->view->assign('title', 'Login');
+
             $this->view->assign('account', $this->securityContext->getAccount());
+
+            $out = $this->view->render();
+            return $out;
         } else {
             throw new Exception('RedirectTargetServiceInterface::onAuthenticationSuccess must return either null, an URL string or an ActionRequest object, but was: ' .
                 gettype($result) . ' - ' . get_class($result), 1464164500);

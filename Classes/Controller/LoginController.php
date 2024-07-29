@@ -100,6 +100,9 @@ class LoginController extends AbstractAuthenticationController
      */
     public function loginAction()
     {
+        $this->view->assign('route', 'login');
+        $this->view->assign('title', 'Login');
+
         $this->view->assign('account', $this->securityContext->getAccount());
         $this->view->assign('node', $this->request->getInternalArgument('__node'));
     }
@@ -124,6 +127,10 @@ class LoginController extends AbstractAuthenticationController
 
         if ($result === null) {
             $this->view->assign('account', $this->securityContext->getAccount());
+
+            $this->view->assign('route', 'login/authenticate');
+            $this->view->assign('title', 'Login');
+
         } else {
             throw new Exception('RedirectTargetServiceInterface::onAuthenticationSuccess must return either null, an URL string or an ActionRequest object, but was: ' .
                 gettype($result) . ' - ' . get_class($result), 1464164500);

@@ -1,24 +1,13 @@
 -
-  requestFilter: 'isPackage("Sandstorm.UserManagement") && isController("Login") && isAction("login")'
+  requestFilter: 'isPackage("Sandstorm.UserManagement")'
   viewObjectName: 'Neos\Fusion\View\FusionView'
   options:
     fusionPathPatterns:
       - resource://Neos.Fusion/Private/Fusion/Root.fusion
       - resource://Neos.Fusion.Form/Private/Fusion/Root.fusion
       - resource://Sandstorm.UserManagement/Private/Fusion/Root.fusion
-      - resource://Sandstorm.UserManagement/Private/Fusion/Integration/Content/Sites/Content.LoginSite.fusion
-    fusionPath: renderer
--
-  requestFilter: 'isPackage("Sandstorm.UserManagement") && isController("Login") && isAction("authenticate")'
-  viewObjectName: 'Neos\Fusion\View\FusionView'
-  options:
-    fusionPathPatterns:
-      - resource://Neos.Fusion/Private/Fusion/Root.fusion
-      - resource://Neos.Fusion.Form/Private/Fusion/Root.fusion
-      - resource://Sandstorm.UserManagement/Private/Fusion/Root.fusion
-      - resource://Sandstorm.UserManagement/Private/Fusion/Integration/Content/Sites/Content.AuthenticationSite.fusion
-    fusionPath: renderer
--
-  requestFilter: 'mainRequest.isPackage("Neos.Neos") && isPackage("Sandstorm.UserManagement")'
-  options:
-    layoutRootPaths: ['resource://Sandstorm.UserManagement/Private/Layouts/Neos']
+    fusionPath: sandstormUserManagement
+# -
+#   requestFilter: 'mainRequest.isPackage("Neos.Neos") && isPackage("Sandstorm.UserManagement")'
+#   options:
+#     layoutRootPaths: ['resource://Sandstorm.UserManagement/Private/Layouts/Neos']

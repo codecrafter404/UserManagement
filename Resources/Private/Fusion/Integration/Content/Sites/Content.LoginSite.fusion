@@ -1,0 +1,3 @@
+renderer = Sandstorm.UserManagement:Content.Login {
+    account = ${account}
+}

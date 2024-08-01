@@ -1,0 +1,19 @@
+prototype(Sandstorm.UserManagement:Component.Login) < prototype(Neos.Fusion:Component) {
+
+    account = ''
+    isAuthenticated = ''
+
+    renderer = Neos.Fusion:Case {
+        logout {
+            condition = ${props.isAuthenticated}
+            renderer = Sandstorm.UserManagement:Component.LogoutForm {
+                account = ${props.account}
+            }
+        }
+        default {
+            condition = ${true}
+            renderer = Sandstorm.UserManagement:Content.LoginForm
+        }
+    }
+
+}

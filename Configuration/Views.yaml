@@ -2,3 +2,35 @@
   requestFilter: 'mainRequest.isPackage("Neos.Neos") && isPackage("Sandstorm.UserManagement")'
   options:
     layoutRootPaths: ['resource://Sandstorm.UserManagement/Private/Layouts/Neos']
+###
+#
+# All controller actions are overwritten here to have minimal change on the controller logic, therefore achive backwards compatibilty with legacy fusion templates
+#
+###
+-
+  requestFilter: 'isPackage("Sandstorm.UserManagement") && isController("Login") && isAction("login")'
+  viewObjectName: 'Neos\Fusion\View\FusionView'
+  options:
+    fusionPathPatterns:
+      - resource://Neos.Fusion/Private/Fusion/Root.fusion
+      - resource://Neos.Fusion.Form/Private/Fusion/Root.fusion
+      - resource://Sandstorm.UserManagement/Private/Fusion/Root.fusion
+    fusionPath: loginSite
+-
+  requestFilter: 'isPackage("Sandstorm.UserManagement") && isController("Login") && isAction("authenticate")'
+  viewObjectName: 'Neos\Fusion\View\FusionView'
+  options:
+    fusionPathPatterns:
+      - resource://Neos.Fusion/Private/Fusion/Root.fusion
+      - resource://Neos.Fusion.Form/Private/Fusion/Root.fusion
+      - resource://Sandstorm.UserManagement/Private/Fusion/Root.fusion
+    fusionPath: authenticationSite
+-
+  requestFilter: 'isPackage("Sandstorm.UserManagement") && isController("Registration") && isAction("index")'
+  viewObjectName: 'Neos\Fusion\View\FusionView'
+  options:
+    fusionPathPatterns:
+      - resource://Neos.Fusion/Private/Fusion/Root.fusion
+      - resource://Neos.Fusion.Form/Private/Fusion/Root.fusion
+      - resource://Sandstorm.UserManagement/Private/Fusion/Root.fusion
+    fusionPath: registrationIndexSite

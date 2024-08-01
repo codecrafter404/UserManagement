@@ -1,0 +1,80 @@
+prototype(Sandstorm.UserManagement:Component.Register.Index) < prototype(Neos.Fusion:Component) {
+
+    isAuthenticated = false
+
+    renderer = Neos.Fusion:Case {
+        authenticated  {
+            condition = ${props.isAuthenticated}
+            renderer = "You're already registered and logged in" // empty site
+        }
+        default {
+            condition = ${!props.isAuthenticated}
+            renderer = Sandstorm.UserManagement:Component.Register.Index.Main
+        }
+    }
+}
+
+prototype(Sandstorm.UserManagement:Component.Register.Index.Main) < prototype(Neos.Fusion:Component) {
+   renderer = afx`
+        <Neos.Fusion.Form:Form
+            form.target.package="Sandstorm.UserManagement"
+            form.target.controller="Registration"
+            form.target.action="register"
+        >
+            <fieldset>
+                <label>
+                    <Sandstorm.UserManagement:Component.FieldContainer
+                        field.name="registrationFlow[email]"
+                        label={I18n.translate('Sandstorm.UserManagement:Main:emailAddress')}
+                    >
+                      <Neos.Fusion.Form:Input attributes.placeholder="test@example.com" attributes.type="email" attributes.required="true"/>
+                    </Sandstorm.UserManagement:Component.FieldContainer>
+                </label>
+                <label>
+                    <Sandstorm.UserManagement:Component.FieldContainer
+                        field.name="registrationFlow[passwordDto][password]"
+                        label={I18n.translate('Sandstorm.UserManagement:Main:password')}
+                    >
+                      <Neos.Fusion.Form:Input attributes.placeholder={I18n.translate('Sandstorm.UserManagement:Main:yourPassword')} attributes.type="password" attributes.required="true"/>
+                    </Sandstorm.UserManagement:Component.FieldContainer>
+                </label>
+                <label>
+                    <Sandstorm.UserManagement:Component.FieldContainer
+                        field.name="registrationFlow[passwordDto][passwordConfirmation]"
+                        label={I18n.translate('Sandstorm.UserManagement:Main:registration.confirmPassword')}
+                    >
+                      <Neos.Fusion.Form:Input attributes.placeholder={I18n.translate('Sandstorm.UserManagement:Main:registration.repeatPassword')} attributes.type="password" attributes.required="true"/>
+                    </Sandstorm.UserManagement:Component.FieldContainer>
+                </label>
+                <label>
+                    <Sandstorm.UserManagement:Component.FieldContainer
+                        field.name="registrationFlow[attributes][salutation]"
+                        label={I18n.translate('Sandstorm.UserManagement:Main:registration.salutation')}
+                    >
+                        <Neos.Fusion.Form:Select>
+                            <Neos.Fusion.Form:Select.Option field.value="m">Mr.</Neos.Fusion.Form:Select.Option>
+                            <Neos.Fusion.Form:Select.Option field.value="f">Ms.</Neos.Fusion.Form:Select.Option>
+                        </Neos.Fusion.Form:Select>
+                    </Sandstorm.UserManagement:Component.FieldContainer>
+                </label>
+                <label>
+                    <Sandstorm.UserManagement:Component.FieldContainer
+                        field.name="registrationFlow[attributes][firstName]"
+                        label={I18n.translate('Sandstorm.UserManagement:Main:firstName')}
+                    >
+                      <Neos.Fusion.Form:Input attributes.placeholder="Max" attributes.required="true"/>
+                    </Sandstorm.UserManagement:Component.FieldContainer>
+                </label>
+                <label>
+                    <Sandstorm.UserManagement:Component.FieldContainer
+                        field.name="registrationFlow[attributes][lastName]"
+                        label={I18n.translate('Sandstorm.UserManagement:Main:lastName')}
+                    >
+                      <Neos.Fusion.Form:Input attributes.placeholder="Mustermann" attributes.required="true"/>
+                    </Sandstorm.UserManagement:Component.FieldContainer>
+                </label>
+                <Neos.Fusion.Form:Button class="button large primary">{I18n.translate('Sandstorm.UserManagement:Main:registration.register')}</Neos.Fusion.Form:Button>
+            </fieldset>
+        </Neos.Fusion.Form:Form>
+    `
+}

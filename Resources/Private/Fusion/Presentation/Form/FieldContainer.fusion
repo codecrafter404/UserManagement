@@ -1,0 +1,10 @@
+prototype(Sandstorm.UserManagement:Component.FieldContainer) < prototype(Neos.Fusion.Form:FieldContainer) {
+    errorRenderer = 'Sandstorm.UserManagement:Component.ErrorRenderer'
+    renderer = afx`
+        <label>
+            {props.label}
+            {props.content}
+            <Neos.Fusion:Renderer @if.hasErrors={field.hasErrors()} type={props.errorRenderer} element.result={field.getResult()} />
+        </label>
+    `
+}

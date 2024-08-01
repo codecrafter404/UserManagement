@@ -1,0 +1,11 @@
+prototype(Sandstorm.UserManagement:Component.ErrorRenderer) < prototype(Neos.Fusion.Form:ErrorRenderer) {
+    renderer = afx`
+        <dl @if.hasResult={props.result} class="errors">
+            <Neos.Fusion:Loop items={props.result.flattenedErrors} itemName="errors">
+                <Neos.Fusion:Loop items={errors} itemName="error">
+                    <dt>{I18n.id(error.code).package(props.translationPackage).source(props.translationSource).value(error).arguments(error.arguments).translate()}</dt>
+                </Neos.Fusion:Loop>
+            </Neos.Fusion:Loop>
+        </dl>
+    `
+}

@@ -1,0 +1,6 @@
+loginSite = Sandstorm.UserManagement:SiteLayout {
+    title = 'Login'
+    content = Sandstorm.UserManagement:Content.Login {
+        account = ${account}
+    }
+}

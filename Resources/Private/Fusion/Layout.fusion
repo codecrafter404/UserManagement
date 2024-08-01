@@ -1,0 +1,25 @@
+prototype(Sandstorm.UserManagement:SiteLayout) < prototype(Neos.Fusion:Component) {
+    title = ''
+    flashmessages = ''
+    content = ''
+
+    renderer = afx`
+        <html class="no-js" lang="">
+        <head>
+              <meta charset="utf-8"/>
+              <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+              <meta name="description" content=""/>
+              <meta name="viewport" content="width=device-width, initial-scale=1"/>
+              <title>
+                    {props.title}
+              </title>
+        </head>
+        <body>
+            <h1>Hello World from Fusion!</h1>
+            <br/>
+            {props.flashmessages}
+            {props.content}
+        </body>
+        </html>
+    `
+}

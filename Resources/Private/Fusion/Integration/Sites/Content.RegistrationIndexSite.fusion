@@ -1,0 +1,6 @@
+registrationIndexSite = Sandstorm.UserManagement:SiteLayout {
+    title = 'Registration'
+    content = Sandstorm.UserManagement:Content.Register.Index {
+        account = ${account}
+    }
+}

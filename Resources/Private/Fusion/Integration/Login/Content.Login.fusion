@@ -1,0 +1,8 @@
+prototype(Sandstorm.UserManagement:Content.Login) < prototype(Neos.Fusion:Component) {
+    account = ''
+    isAuthenticated = ${Sandstorm.UserManagement.isAuthenticated('Sandstorm.UserManagement:Login')}
+    renderer = Sandstorm.UserManagement:Component.Login {
+        account = ${props.account}
+        isAuthenticated = ${props.isAuthenticated}
+    }
+}

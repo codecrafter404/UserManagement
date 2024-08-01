@@ -1,0 +1,18 @@
+prototype(Sandstorm.UserManagement:Component.LoginForm) < prototype(Neos.Fusion:Component) {
+    passwordResetUri = ''
+    renderer =  afx`
+        <Neos.Fusion.Form:Form
+            form.target.package="Sandstorm.UserManagement"
+            form.target.controller="Login"
+            form.target.action="authenticate"
+        >
+            <fieldset>
+                  <Neos.Fusion.Form:Input attributes.placeholder={I18n.translate('Sandstorm.UserManagement:Main:emailAddress')} field.name="__authentication[Neos][Flow][Security][Authentication][Token][UsernamePassword][username]" attributes.type="email" attributes.autofocus/>
+                  <Neos.Fusion.Form:Input attributes.placeholder={I18n.translate('Sandstorm.UserManagement:Main:password')} field.name="__authentication[Neos][Flow][Security][Authentication][Token][UsernamePassword][password]" attributes.type="password" attributes.value=""/>
+                  <Neos.Fusion.Form:Button class="button large primary">{I18n.translate('Sandstorm.UserManagement:Main:login')}</Neos.Fusion.Form:Button>
+            </fieldset>
+
+        </Neos.Fusion.Form:Form>
+        <a href={props.passwordResetUri}>{I18n.translate('Sandstorm.UserManagement:Main:passwordForgotten')}</a>
+    `
+}

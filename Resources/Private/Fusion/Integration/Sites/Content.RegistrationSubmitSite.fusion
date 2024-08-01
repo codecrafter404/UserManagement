@@ -1,0 +1,7 @@
+registrationSubmitSite = Sandstorm.UserManagement:SiteLayout {
+    title = 'Registration'
+    content = Sandstorm.UserManagement:Component.RegisterSubmit {
+        registrationFlow = ${registrationFlow}
+    }
+}
+

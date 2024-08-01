@@ -51,7 +51,7 @@
                 <source>Register</source>
             </trans-unit>
             <trans-unit id="registration.confirmationEmailSent">
-                <source>We have sent an email to confirm the registration to <strong>%s</strong>. Please follow the instructions in the email to confirm the registration.</source>
+                <source>We have sent an email to confirm the registration to {0}. Please follow the instructions in the email to confirm the registration.</source>
             </trans-unit>
             <trans-unit id="activation.linkNotValid">
                 <source>The activation link was not valid.</source>

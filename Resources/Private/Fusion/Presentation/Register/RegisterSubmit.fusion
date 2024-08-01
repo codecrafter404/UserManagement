@@ -1,0 +1,14 @@
+prototype(Sandstorm.UserManagement:Component.RegisterSubmit) < prototype(Neos.Fusion:Component) {
+
+    registrationFlow = ''
+
+    @private {
+        //translation = ${I18n.translate('registration.confirmationEmailSent', null, {'0': props.registrationFlow.email}, 'Main', 'Sandstorm.UserManagement', props.registrationFlow.email)}
+        translation = ${I18n.translate('registration.confirmationEmailSent', null, {'0': props.registrationFlow.email}, 'Main', 'Sandstorm.UserManagement', props.registrationFlow.email)}
+    }
+    renderer = afx`
+      <div class="callout success">
+        <p>{private.translation}</p>
+      </div>
+    `
+}

@@ -1,0 +1,8 @@
+registrationActivateAccountSite = Sandstorm.UserManagement:SiteLayout {
+    title = 'Activate Account'
+    content = Sandstorm.UserManagement:Content.RegistrationAccountActivation {
+        success = ${success}
+        tokenNotFound = ${tokenNotFound}
+        tokenTimeout = ${tokenTimeout}
+    }
+}

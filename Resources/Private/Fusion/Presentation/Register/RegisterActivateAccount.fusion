@@ -1,0 +1,66 @@
+prototype(Sandstorm.UserManagement:Component.RegistrationAccountActivation) < prototype(Neos.Fusion:Component) {
+
+    // all worked
+    success = true
+    // if set, the auth token was not found.
+    tokenNotFound = false
+    // if set, the token had a timeout.
+    tokenTimeout = false
+
+    indexLink = ''
+
+    renderer = Neos.Fusion:Case {
+        success {
+            condition = ${success}
+            renderer = Sandstorm.UserManagement:Component.RegistrationAccountActivation.Success
+        }
+        tokenNotFound {
+            condition = ${tokenNotFound}
+            renderer = Sandstorm.UserManagement:Component.RegistrationAccountActivation.LinkNotValid {
+                indexLink = ${props.indexLink}
+            }        }
+        tokenTimeout {
+            condition = ${tokenTimeout}
+            renderer = Sandstorm.UserManagement:Component.RegistrationAccountActivation.LinkExpired {
+                indexLink = ${props.indexLink}
+            }
+        }
+        default {
+            condition = ${true}
+            renderer = "General failure: invalid State"
+        }
+    }
+}
+prototype(Sandstorm.UserManagement:Component.RegistrationAccountActivation.Success) < prototype(Neos.Fusion:Component) {
+    renderer = afx`
+        <div class="callout success">
+            <p>{I18n.translate('Sandstorm.UserManagement:Main:activation.successMessage')}</p>
+        </div>
+    `
+}
+prototype(Sandstorm.UserManagement:Component.RegistrationAccountActivation.LinkExpired) < prototype(Neos.Fusion:Component) {
+
+    indexLink = ''
+
+    renderer = afx`
+        <div class="callout alert">
+            <p>
+                {I18n.translate('Sandstorm.UserManagement:Main:activation.linkExpired')}
+                <a href={props.indexLink}>{I18n.translate('Sandstorm.UserManagement:Main:activation.registerAgain')}</a>
+            </p>
+        </div>
+    `
+}
+prototype(Sandstorm.UserManagement:Component.RegistrationAccountActivation.LinkNotValid) < prototype(Neos.Fusion:Component) {
+
+    indexLink = ''
+
+    renderer = afx`
+        <div class="callout alert">
+            <p>
+                {I18n.translate('Sandstorm.UserManagement:Main:activation.linkNotValid')}
+                <a href={props.indexLink}>{I18n.translate('Sandstorm.UserManagement:Main:activation.registerAgain')}</a>
+            </p>
+        </div>
+    `
+}

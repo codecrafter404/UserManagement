@@ -1,0 +1,25 @@
+prototype(Sandstorm.UserManagement:Content.RegistrationAccountActivation) < prototype(Neos.Fusion:Component) {
+
+    // all worked
+    success = true
+    // if set, the auth token was not found.
+    tokenNotFound = false
+    // if set, the token had a timeout.
+    tokenTimeout = false
+
+    @private {
+        indexLink = Neos.Fusion:UriBuilder {
+            package = "Sandstorm.UserManagement"
+            controller = "Registration"
+            action = "index"
+        }
+    }
+
+    renderer = Sandstorm.UserManagement:Component.RegistrationAccountActivation {
+        success = ${props.success}
+        tokenNotFound = ${props.tokenNotFound}
+        tokenTimeout = ${props.tokenTimeout}
+
+        indexLink = ${private.indexLink}
+    }
+}

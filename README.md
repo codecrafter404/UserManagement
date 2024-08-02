@@ -433,10 +433,10 @@ We thought quite a bit about the ideal implementation for this change. It should
 The following solutions crossed our mind:
 - Overwrite everything in the `Root.fusion`
     - PRO: straightforward
-    - CON: it wouldn't be a 'hacky' solution and bound to break in the near future
+    - CON: it would be a 'hacky' solution and bound to break in the near future
 - Update the controller logic to render a `FusionView`
     - PRO: we can render Fusion & add context based on the current route
-    - CON: Every controller would need to be updated; only with a lot of work backwards compatible
+    - CON: Every controller would need to be updated; only with a lot of work backwards compatible would be archivable
 - Overwrite specific controller actions in the `Views.yaml`
     - PRO: this mechanism is already used to overwrite the default template; doesn't need a lot of modification of the controller logic; can be gradually migrated
     - CON: requires small modifications to existing projects in order to further use legacy fluid templates

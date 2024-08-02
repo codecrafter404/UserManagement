@@ -8,26 +8,13 @@ use Sandstorm\UserManagement\Domain\Repository\RegistrationFlowRepository;
 use Sandstorm\UserManagement\Domain\Service\UserCreationServiceInterface;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Mvc\Controller\ActionController;
-use Psr\Log\LoggerInterface;
 
 /**
  * Do the actual registration of new users
  */
 class RegistrationController extends ActionController
 {
-    /**
-    * TODO: remove
-    * @var LoggerInterface
-    */
-    protected $logger;
-    /**
-     * @param LoggerInterface $logger
-     * @return void
-     */
-    public function injectLogger(LoggerInterface $logger)
-    {
-            $this->logger = $logger;
-    }
+
     /**
      * @Flow\Inject
      * @var RegistrationFlowRepository
@@ -98,14 +85,10 @@ class RegistrationController extends ActionController
         }
         $registrationFlow->storeEncryptedPassword();
 
-        //TODO: remove
-        $token = $registrationFlow->getActivationToken();
-        $logger->info("Got activation token {$token}");
-
         // Send out a confirmation mail
         $activationLink = $this->uriBuilder->reset()->setCreateAbsoluteUri(true)->uriFor(
             'activateAccount',
-            ['token' => $token],
+            ['token' => $registrationFlow->getActivationToken()],
             'Registration');
 
         $this->emailService->sendTemplateEmail(

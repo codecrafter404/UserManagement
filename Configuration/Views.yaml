@@ -57,3 +57,13 @@
       - resource://Neos.Fusion.Form/Private/Fusion/Root.fusion
       - resource://Sandstorm.UserManagement/Private/Fusion/Root.fusion
     fusionPath: registrationActivateAccountSite
+# Password Reset related actions
+-
+  requestFilter: 'isPackage("Sandstorm.UserManagement") && isController("ResetPassword") && isAction("index")'
+  viewObjectName: 'Neos\Fusion\View\FusionView'
+  options:
+    fusionPathPatterns:
+      - resource://Neos.Fusion/Private/Fusion/Root.fusion
+      - resource://Neos.Fusion.Form/Private/Fusion/Root.fusion
+      - resource://Sandstorm.UserManagement/Private/Fusion/Root.fusion
+    fusionPath: resetPasswordIndexSite

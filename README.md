@@ -7,6 +7,7 @@ This package works in Neos CMS and Flow and provides the following functionality
 * Sending out an e-mail for account confirmation
 * Login of registered (frontend) users via a login form
 * "Forgotten password" with password reset e-mail
+* Custom Site/E-Mail Templates (Site templates also in fusion)
 
 # 1. Compatibility and Maintenance
 Sandstorm.UserManagement is currently being maintained for the following versions:
@@ -235,8 +236,18 @@ Sandstorm\UserManagement\Domain\Service\RedirectTargetServiceInterface:
 ```
 
 ## Checking for a logged-in user in your templates
+### Fusion (Recommended)
+The UserManagement Package now supports Fusion!
+To check if a user is logged in, a simple [Eel-Helper](./Classes/EelHelper/AuthenticationHelper.php) can be used as follows:
+```
+prototype(Your.Vendor:Component) < prototype(Neos.Fusion:Component) {
+    isAuthenticated = ${Sandstorm.UserManagement.isAuthenticated('Sandstorm.UserManagement:Login')}
+    renderer = afx `
+        <p>Is user authenticated: {props.isAuthenticated ? 'true' : 'false'}</p>
+    `
+```
+### Fluid (Legacy)
 There is a ViewHelper available that allows you to check if somebody is logged into the frontend. Here's an example:
-
 ```
 {namespace um=Sandstorm\UserManagement\ViewHelpers}
 
@@ -260,7 +271,30 @@ argument to which you can pass the name of the Auth Provider you are using.
 You can change any template via the default method using `Views.yaml`. Please see
 http://flowframework.readthedocs.io/en/stable/TheDefinitiveGuide/PartIII/ModelViewController.html#configuring-views-through-views-yaml.
 Here's an example how to plug your own login template:
-
+### Fusion (Recommended)
+If you just want to apply simple modifications to the way the components are rendered, or which classes should be added to which HTML tags, override the responsible [presentation components](./Resources/Private/Fusion/Presentation/). This can be done like this:
+```fusion
+prototype(Sandstorm.UserManagement:Component.LoginForm) < prototype(Neos.Fusion:Component) {
+    passwordResetUri >
+    renderer =  afx`
+        <p>Your custom loginform here.</p>
+        <a href={props.passwordResetUri}>click here to reset your password.</a>
+    `
+}
+```
+To overwrite the fusion paths directly, in order to implement complete custom fusion, you can overwrite the `fusionPath` property as follows:
+```YAML
+-
+  requestFilter: 'isPackage("Sandstorm.UserManagement") && isController("Login") && isAction("login")'
+  viewObjectName: 'Neos\Fusion\View\FusionView'
+  options:
+    fusionPathPatterns:
+      - resource://Neos.Fusion/Private/Fusion/Root.fusion
+      - resource://Neos.Fusion.Form/Private/Fusion/Root.fusion
+      - resource://Sandstorm.UserManagement/Private/Fusion/Root.fusion
+    fusionPath: yourCustomFusionPath
+```
+### Fluid (Legacy)
 ```YAML
 
 -
@@ -380,12 +414,34 @@ Feel free to submit issues/PRs :)
 # 6. TODOs
 
 * More Tests.
+* Translations
+
+## Fusion Support
+- Full support for the default NodeTypes as follows:
+    - POC: migrate all fluid templates & overwrite them using the corresponding actions in the `Views.yaml`
+    - Ideally, most of the controller logic is obsolete in further releases and can be implemented in pure fusion or custom fusion components
 
 # 7. FAQ
+## What happens if the user did not receive the registration email?
+Just tell the user to register again. In this case, previous unfinished registrations are discarded.
 
-* *What happens if the user did not receive the registration email?*
-  Just tell the user to register again. In this case, previous unfinished registrations are discarded.
+## Why didn't you use X to implement fusion support?
+We thought quite a bit about the ideal implementation for this change. It should meet the following requirements:
+- Easy to use
+- Least modifications as possible
+- Backwards compatible, or at least minimal work should be done to use the legacy fluid templates
+The following solutions crossed our mind:
+- Overwrite everything in the `Root.fusion`
+    - PRO: straightforward
+    - CON: it wouldn't be a 'hacky' solution and bound to break in the near future
+- Update the controller logic to render a `FusionView`
+    - PRO: we can render Fusion & add context based on the current route
+    - CON: Every controller would need to be updated; only with a lot of work backwards compatible
+- Overwrite specific controller actions in the `Views.yaml`
+    - PRO: this mechanism is already used to overwrite the default template; doesn't need a lot of modification of the controller logic; can be gradually migrated
+    - CON: requires small modifications to existing projects in order to further use legacy fluid templates
 
+Therefore, we settled with the last approach and until now it works flawlessly.
 # 8. License
 MIT.
 https://opensource.org/licenses/MIT
